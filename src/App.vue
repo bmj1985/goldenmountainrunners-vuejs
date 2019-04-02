@@ -35,15 +35,16 @@
   }
 
   main {
-    z-index: -99999;
     height: 88vh;
     width: 100vw;
     background-image: url("./assets/goldentopo.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    /* margin-top: 10px;
-    margin-bottom: 10px; */
+    router-view {
+      height: 100%;
+      overflow: scroll;
+    }
   }
 
   footer {
