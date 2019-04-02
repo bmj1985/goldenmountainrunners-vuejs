@@ -105,6 +105,26 @@ export default Vue.extend({
     .route {
       font-size: 1.25rem;
     }
+    @media only screen and (max-width: 450px) {
+      h2 {
+        font-size: 1.5rem;
+      }
+      h3 {
+        font-size: 1.25rem;
+      }
+      .logo {
+        height: 10rem;
+        width: 10rem;
+      }
+      .run-description {
+        text-align: justify;
+        font-size: 1.1rem;
+        box-shadow: 0;
+      }
+      .route {
+        font-size: 1rem;
+      }
+    }
   }
 }
 </style>
