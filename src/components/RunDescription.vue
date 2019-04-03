@@ -7,9 +7,10 @@
       <h3>Welcome to</h3>
       <img class="logo" alt="GMR logo" src="../assets/gmr_logo.png">
       <p class="next-run">Our next run will be:</p>
-      <h2 class="date">{{date}}</h2>
+      <h2 class="date">{{date}} {{runTime}}</h2>
       <div class="run-description">
-        This week we will run from
+          Stay tuned! Details on next Tuesday's run will generally be posted sometime between Thursday and Monday prior.
+        <!-- This week we will run from
         <a
           href="http://www.mountaintoadbrewing.com"
           target="_blank"
@@ -17,26 +18,36 @@
         <a
           href="http://www.goldenhellweek.com"
           target="_blank"
-        >2019 Golden Hell Week</a> routes. The total distance is just over 4.5 miles. After the run we will celebrate our activity with happy hour priced beers at Mountain Toad. See you Tuesday!
+        >2019 Golden Hell Week</a> routes. The total distance is just over 4.5 miles. After the run we will celebrate our activity with happy hour priced beers at Mountain Toad. See you Tuesday! -->
       </div>
-      <p class="route">
+      <!-- <p class="route">
         Route description:
         <a :href="link" target="_blank">{{link}}</a>
-      </p>
+      </p> -->
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import { isTuesday, eachDay, addDays, format } from 'date-fns'
 
 export default Vue.extend({
   name: "RunDescription",
   data() {
     return {
-      date: "Tuesday April 4th, 2019 6:15pm",
-      link: "https://www.strava.com/routes/4737080"
+      link: "https://www.strava.com/routes/4737080",
+      runTime: '6:15pm'
     };
+  },
+  computed: {
+      date: function() {
+          const oneWeekFromToday = addDays(new Date(), 7)
+          const daysArr = eachDay(new Date(), oneWeekFromToday)
+          const tuesday = daysArr.find(v => isTuesday(v))
+            console.log(tuesday)
+         return format(tuesday, "dddd MMMM D, YYYY")
+      }
   }
 });
 </script>
