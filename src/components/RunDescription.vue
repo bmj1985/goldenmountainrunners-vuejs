@@ -45,8 +45,7 @@ export default Vue.extend({
           const oneWeekFromToday = addDays(new Date(), 7)
           const daysArr = eachDay(new Date(), oneWeekFromToday)
           const tuesday = daysArr.find(v => isTuesday(v))
-            console.log(tuesday)
-         return format(tuesday, "dddd MMMM D, YYYY")
+         return tuesday ? format(tuesday, "dddd MMMM D, YYYY") : null
       }
   }
 });
