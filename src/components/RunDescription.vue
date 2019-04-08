@@ -108,6 +108,14 @@ export default Vue.extend({
     align-items: center;
     height: 100%;
     margin: 2rem;
+    overflow: scroll;
+    @media only screen and (max-width: 450px) {
+      margin: 0;
+      justify-content: flex-start;
+      align-items: space-evenly;
+      line-height: 1.2;
+      text-align: center;
+    }
     h2 {
       font-size: 2rem;
     }
@@ -117,6 +125,10 @@ export default Vue.extend({
     .logo {
       height: 10rem;
       width: 10rem;
+    @media only screen and (max-width: 450px) {
+      height: 7rem;
+      width: 7rem;
+    }
     }
     .run-description {
           /* &.pending {
@@ -141,9 +153,9 @@ export default Vue.extend({
         width: 10rem;
       }
       .run-description {
-          &.pending {
+          /* &.pending {
               text-align: center;
-          }
+          } */
         text-align: justify;
         font-size: 1.1rem;
         box-shadow: 0;
