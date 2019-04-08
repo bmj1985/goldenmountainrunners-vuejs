@@ -125,10 +125,6 @@ export default Vue.extend({
     .logo {
       height: 10rem;
       width: 10rem;
-    @media only screen and (max-width: 450px) {
-      height: 7rem;
-      width: 7rem;
-    }
     }
     .run-description {
           /* &.pending {
@@ -149,8 +145,8 @@ export default Vue.extend({
         font-size: 1.25rem;
       }
       .logo {
-        height: 10rem;
-        width: 10rem;
+        height: 7rem;
+        width: 7rem;
       }
       .run-description {
           /* &.pending {
