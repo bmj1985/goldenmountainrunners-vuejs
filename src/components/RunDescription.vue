@@ -8,22 +8,27 @@
       <img class="logo" alt="GMR logo" src="../assets/gmr_logo.png">
       <p class="next-run">Our next run will be:</p>
       <h2 class="date">{{date}} {{runTime}}</h2>
-      <div class="run-description">
-          Stay tuned! Details on next Tuesday's run will generally be posted sometime between Thursday and Monday prior.
-        <!-- This week we will run from
-        <a
+      <p>Where: <a href="https://goo.gl/maps/pqnSmwKy4n72" target="_blank">{{location}}</a></p>
+      <div class="run-description" 
+      :class="{pending: pendingRunDetails }">
+          <!-- {{pendingRunDetails}} -->
+          <p>White Ranch…where the trails are steep, the views are spectacular and the runners are free to roam (except for one part of Longhorn Trail which is designated as Biker Only).  Let’s meet in the lower White Ranch lot for a 6:15 start. The run will be a classic lollipop-type tour of the lower part of the park.  Belcher-Whippletree-Longhorn-Belcher.  The total route is approximately 5 miles.  After the run we will head back to <a
           href="http://www.mountaintoadbrewing.com"
           target="_blank"
-        >Mountain Toad Brewing</a> up North Table. The run is a classic out and back that reaches the highest point on North Table (Lichen Peak) and is one of the
+        >Mountain Toad Brewing</a> to regale each other with tails from the trail and sip some happy hour priced beers.  
+See Y’all Tuesday!</p>
+<p>PS:  The longhorn section we are running is not biker only.</p>
+        <!-- This week we will run from
+         up North Table. The run is a classic out and back that reaches the highest point on North Table (Lichen Peak) and is one of the
         <a
           href="http://www.goldenhellweek.com"
           target="_blank"
         >2019 Golden Hell Week</a> routes. The total distance is just over 4.5 miles. After the run we will celebrate our activity with happy hour priced beers at Mountain Toad. See you Tuesday! -->
       </div>
-      <!-- <p class="route">
+      <p class="route">
         Route description:
         <a :href="link" target="_blank">{{link}}</a>
-      </p> -->
+      </p>
     </div>
   </div>
 </template>
@@ -36,8 +41,10 @@ export default Vue.extend({
   name: "RunDescription",
   data() {
     return {
-      link: "https://www.strava.com/routes/4737080",
-      runTime: '6:15pm'
+    pendingRunDetails: "Stay tuned! Details on next Tuesday's run will generally be posted sometime between Thursday and Monday prior.",
+      link: "https://www.gmap-pedometer.com/?r=7267394",
+      runTime: '6:15pm',
+      location: "21827 West 56th Avenue Golden CO, 80403"
     };
   },
   computed: {
@@ -45,7 +52,7 @@ export default Vue.extend({
           const oneWeekFromToday = addDays(new Date(), 7)
           const daysArr = eachDay(new Date(), oneWeekFromToday)
           const tuesday = daysArr.find(v => isTuesday(v))
-         return tuesday ? format(tuesday, "dddd MMMM D, YYYY") : null
+         return tuesday ? format(tuesday, "dddd MMMM Do, YYYY") : null
       }
   }
 });
@@ -63,6 +70,10 @@ export default Vue.extend({
   padding: 1rem;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   // text-shadow: 0 2px 4px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  a {
+      text-decoration: none;
+      color: #365899;
+  }
   @media only screen and (max-width: 760px) {
     flex-direction: column;
   }
@@ -108,8 +119,11 @@ export default Vue.extend({
       width: 10rem;
     }
     .run-description {
+          /* &.pending {
+              text-align: center;
+          } */
       text-align: justify;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       box-shadow: 0;
     }
     .route {
@@ -127,6 +141,9 @@ export default Vue.extend({
         width: 10rem;
       }
       .run-description {
+          &.pending {
+              text-align: center;
+          }
         text-align: justify;
         font-size: 1.1rem;
         box-shadow: 0;

@@ -15,7 +15,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import "colors";
+@import "../styles/_global";
 .home {
   overflow: scroll;
   display: flex;
