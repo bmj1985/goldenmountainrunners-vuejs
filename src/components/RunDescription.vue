@@ -15,7 +15,7 @@
           <p>White Ranch…where the trails are steep, the views are spectacular and the runners are free to roam (except for one part of Longhorn Trail which is designated as Biker Only).  Let’s meet in the lower White Ranch lot for a 6:15 start. The run will be a classic lollipop-type tour of the lower part of the park.  Belcher-Whippletree-Longhorn-Belcher.  The total route is approximately 5 miles.  After the run we will head back to <a
           href="http://www.mountaintoadbrewing.com"
           target="_blank"
-        >Mountain Toad Brewing</a> to regale each other with tails from the trail and sip some happy hour priced beers.  
+        >Mountain Toad Brewing</a> to regale each other with tales from the trail and sip some happy hour priced beers.  
 See Y’all Tuesday!</p>
 <p>PS:  The longhorn section we are running is not biker only.</p>
         <!-- This week we will run from
