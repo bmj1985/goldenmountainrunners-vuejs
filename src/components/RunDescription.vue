@@ -8,16 +8,16 @@
       <img class="logo" alt="GMR logo" src="../assets/gmr_logo.png">
       <p class="next-run">Our next run will be:</p>
       <h2 class="date">{{date}} {{runTime}}</h2>
-      <p>Where: <a href="https://goo.gl/maps/pqnSmwKy4n72" target="_blank">{{location}}</a></p>
+      <!-- <p>Where: <a href="https://goo.gl/maps/pqnSmwKy4n72" target="_blank">{{location}}</a></p> -->
       <div class="run-description" 
       :class="{pending: pendingRunDetails }">
-          <!-- {{pendingRunDetails}} -->
-          <p>White Ranch…where the trails are steep, the views are spectacular and the runners are free to roam (except for one part of Longhorn Trail which is designated as Biker Only).  Let’s meet in the lower White Ranch lot for a 6:15 start. The run will be a classic lollipop-type tour of the lower part of the park.  Belcher-Whippletree-Longhorn-Belcher.  The total route is approximately 5 miles.  After the run we will head back to <a
+          {{pendingRunDetails}}
+          <!-- <p>White Ranch…where the trails are steep, the views are spectacular and the runners are free to roam (except for one part of Longhorn Trail which is designated as Biker Only).  Let’s meet in the lower White Ranch lot for a 6:15 start. The run will be a classic lollipop-type tour of the lower part of the park.  Belcher-Whippletree-Longhorn-Belcher.  The total route is approximately 5 miles.  After the run we will head back to <a
           href="http://www.mountaintoadbrewing.com"
           target="_blank"
         >Mountain Toad Brewing</a> to regale each other with tales from the trail and sip some happy hour priced beers.  
 See Y’all Tuesday!</p>
-<p>PS:  The longhorn section we are running is not biker only.</p>
+<p>PS:  The longhorn section we are running is not biker only.</p> -->
         <!-- This week we will run from
          up North Table. The run is a classic out and back that reaches the highest point on North Table (Lichen Peak) and is one of the
         <a
@@ -25,10 +25,10 @@ See Y’all Tuesday!</p>
           target="_blank"
         >2019 Golden Hell Week</a> routes. The total distance is just over 4.5 miles. After the run we will celebrate our activity with happy hour priced beers at Mountain Toad. See you Tuesday! -->
       </div>
-      <p class="route">
+      <!-- <p class="route">
         Route description:
         <a :href="link" target="_blank">{{link}}</a>
-      </p>
+      </p> -->
     </div>
   </div>
 </template>
