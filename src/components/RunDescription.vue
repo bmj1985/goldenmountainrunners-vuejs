@@ -8,52 +8,51 @@
       <img class="logo" alt="GMR logo" src="../assets/gmr_logo.png">
       <p class="next-run">Our next run will be:</p>
       <h2 class="date">{{date}} {{runTime}}</h2>
-      <!-- <p>Where: <a href="https://goo.gl/maps/pqnSmwKy4n72" target="_blank">{{location}}</a></p> -->
-      <div class="run-description" 
-      :class="{pending: pendingRunDetails }">
-          {{pendingRunDetails}}
-          <!-- <p>White Ranch…where the trails are steep, the views are spectacular and the runners are free to roam (except for one part of Longhorn Trail which is designated as Biker Only).  Let’s meet in the lower White Ranch lot for a 6:15 start. The run will be a classic lollipop-type tour of the lower part of the park.  Belcher-Whippletree-Longhorn-Belcher.  The total route is approximately 5 miles.  After the run we will head back to <a
-          href="http://www.mountaintoadbrewing.com"
-          target="_blank"
-        >Mountain Toad Brewing</a> to regale each other with tales from the trail and sip some happy hour priced beers.  
-See Y’all Tuesday!</p>
-<p>PS:  The longhorn section we are running is not biker only.</p> -->
-        <!-- This week we will run from
-         up North Table. The run is a classic out and back that reaches the highest point on North Table (Lichen Peak) and is one of the
-        <a
-          href="http://www.goldenhellweek.com"
-          target="_blank"
-        >2019 Golden Hell Week</a> routes. The total distance is just over 4.5 miles. After the run we will celebrate our activity with happy hour priced beers at Mountain Toad. See you Tuesday! -->
+      <p>
+        Where:
+        <a href="https://goo.gl/maps/QpoQN1R1o7q" target="_blank">{{location}}</a>
+      </p>
+      <div class="run-description" :class="{pending: pendingRunDetails }">
+        <!-- {{pendingRunDetails}} -->
+        <p>***If you want to demo shoes show up at 6:00 so you can get fitted and we can start the run as close to 6:15 as possible***</p>
+        <p>
+          This week will be teaming up with our friends at <a href="https://www.vitaloutdoors.com/" target="_blank">Vital Outdoors</a> to do a demo run with Altra Shoes. We should have a variety of Altra’s to try out. Likely the TIMP, Lone Peak and Superior at a minimum. Vital will be offering a 20% discount on any Altra Shoes purchased or ordered the night of the event! In addition, we will likely have some Altra Swag to raffle at the end of the run for all those who took some demo shoes for spin. The run route for this event will take us through town and part way up Chimney Gulch (to the first Lookout Mountain Road Crossing). The total distance is 4 miles. After the run we will head to
+          <a
+            href="http://www.mountaintoadbrewing.com"
+            target="_blank"
+          >Mountain Toad Brewing</a> to talk about how awesome Altra Shoes are!
+        </p>
+        <p class="route">
+          Route description:
+          <a :href="link" target="_blank">{{link}}</a>
+        </p>
       </div>
-      <!-- <p class="route">
-        Route description:
-        <a :href="link" target="_blank">{{link}}</a>
-      </p> -->
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { isTuesday, eachDay, addDays, format } from 'date-fns'
+import { isTuesday, eachDay, addDays, format } from "date-fns";
 
 export default Vue.extend({
   name: "RunDescription",
   data() {
     return {
-    pendingRunDetails: "Stay tuned! Details on next Tuesday's run will generally be posted sometime between Thursday and Monday prior.",
-      link: "https://www.gmap-pedometer.com/?r=7267394",
-      runTime: '6:15pm',
-      location: "21827 West 56th Avenue Golden CO, 80403"
+      pendingRunDetails:
+        "Stay tuned! Details on next Tuesday's run will generally be posted sometime between Thursday and Monday prior.",
+      link: "https://www.gmap-pedometer.com/?r=7203287",
+      runTime: "6:15pm",
+      location: "Vital Outdoors, 1224 Washington Ave, Golden, CO 80401"
     };
   },
   computed: {
-      date: function() {
-          const oneWeekFromToday = addDays(new Date(), 7)
-          const daysArr = eachDay(new Date(), oneWeekFromToday)
-          const tuesday = daysArr.find(v => isTuesday(v))
-         return tuesday ? format(tuesday, "dddd MMMM Do, YYYY") : null
-      }
+    date: function() {
+      const oneWeekFromToday = addDays(new Date(), 7);
+      const daysArr = eachDay(new Date(), oneWeekFromToday);
+      const tuesday = daysArr.find(v => isTuesday(v));
+      return tuesday ? format(tuesday, "dddd MMMM Do, YYYY") : null;
+    }
   }
 });
 </script>
@@ -71,8 +70,8 @@ export default Vue.extend({
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   // text-shadow: 0 2px 4px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   a {
-      text-decoration: none;
-      color: #365899;
+    text-decoration: none;
+    color: #365899;
   }
   @media only screen and (max-width: 760px) {
     flex-direction: column;
@@ -127,7 +126,7 @@ export default Vue.extend({
       width: 10rem;
     }
     .run-description {
-          /* &.pending {
+      /* &.pending {
               text-align: center;
           } */
       text-align: justify;
@@ -149,7 +148,7 @@ export default Vue.extend({
         width: 7rem;
       }
       .run-description {
-          /* &.pending {
+        /* &.pending {
               text-align: center;
           } */
         text-align: justify;
