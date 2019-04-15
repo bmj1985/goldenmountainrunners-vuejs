@@ -10,17 +10,17 @@
       <h2 class="date">{{date}} {{runTime}}</h2>
       <p>
         Where:
-        <a href="https://goo.gl/maps/QpoQN1R1o7q" target="_blank">{{location}}</a>
+        <a href="https://goo.gl/maps/fqmqohpp3LH2" target="_blank">{{location}}</a>
       </p>
       <div class="run-description" :class="{pending: pendingRunDetails }">
         <!-- {{pendingRunDetails}} -->
-        <p>***If you want to demo shoes show up at 6:00 so you can get fitted and we can start the run as close to 6:15 as possible***</p>
-        <p>
-          This week will be teaming up with our friends at <a href="https://www.vitaloutdoors.com/" target="_blank">Vital Outdoors</a> to do a demo run with Altra Shoes. We should have a variety of Altra’s to try out. Likely the TIMP, Lone Peak and Superior at a minimum. Vital will be offering a 20% discount on any Altra Shoes purchased or ordered the night of the event! In addition, we will likely have some Altra Swag to raffle at the end of the run for all those who took some demo shoes for spin. The run route for this event will take us through town and part way up Chimney Gulch (to the first Lookout Mountain Road Crossing). The total distance is 4 miles. After the run we will head to
-          <a
+        <p>****Note Start Time 6:30*****</p>
+        <p>Apparently all of the mountain bikes in the State of Colorado wanted to meet in the lower parking lot of White Ranch this past Tuesday.  I very much appreciate everyone’s flexibility in making the last minute shift to North Table to avoid an overcrowding situation at WR.  This week, we will try White Ranch.  This time we will head to the west lot to try to avoid some of the crowds.  We will call this one the Rawhide Loop since the entire run will be on Rawhide trail.  Pretty creative right?!?!
+We will start the run at 6:30 to allow for a little extra drive time to get the west lot.  For those who want to make sure we leave parking for other users (or just want to be environmentally friendly) we could definitely do some carpooling from Golden.  Respond in the comments if you want to meet at Mountain Toad at 6:00 and carpool up to the west lot.  
+The total loop is about 5.2 miles.  It will definitely be a little more mellow than the lower section of the park, but still has good rolling climbs and great views.  After the run we will head back to town and grab some beers at the   <a
             href="http://www.mountaintoadbrewing.com"
             target="_blank"
-          >Mountain Toad Brewing</a> to talk about how awesome Altra Shoes are!
+          >Toad</a>.  See you all on Tuesday!</p>
         </p>
         <p class="route">
           Route description:
@@ -41,9 +41,9 @@ export default Vue.extend({
     return {
       pendingRunDetails:
         "Stay tuned! Details on next Tuesday's run will generally be posted sometime between Thursday and Monday prior.",
-      link: "https://www.gmap-pedometer.com/?r=7203287",
-      runTime: "6:15pm",
-      location: "Vital Outdoors, 1224 Washington Ave, Golden, CO 80401"
+      link: "https://www.gmap-pedometer.com/?r=7360374",
+      runTime: "6:30pm",
+      location: "25303 Belcher Hill Rd, Golden, CO 80403"
     };
   },
   computed: {
