@@ -15,6 +15,7 @@
       </p>
       </div>
       <div class="run-description">
+        <h2 class="title">{{title}}</h2>
         <div v-if="!details" :class="{pending: pendingRunDetails }">{{pendingRunDetails}}</div>
         <div v-else class="run-details"><p v-for="detail in details">{{detail}}</p></div>
         <p class="route">
@@ -38,6 +39,7 @@ export default Vue.extend({
         "Stay tuned! Details on next Tuesday's run will generally be posted sometime between Thursday and Monday prior.",
       link: "https://www.gmap-pedometer.com/?r=7360374",
       runTime: "6:30pm",
+      title: "White Ranch Take 2 (Rawhide Loop Edition)",
       location: "25303 Belcher Hill Rd, Golden, CO 80403",
       details: ["****Note Start Time 6:30*****", "Apparently all of the mountain bikes in the State of Colorado wanted to meet in the lower parking lot of White Ranch this past Tuesday.  I very much appreciate everyone’s flexibility in making the last minute shift to North Table to avoid an overcrowding situation at WR.  This week, we will try White Ranch.  This time we will head to the west lot to try to avoid some of the crowds.  We will call this one the Rawhide Loop since the entire run will be on Rawhide trail.  Pretty creative right?!?!", "We will start the run at 6:30 to allow for a little extra drive time to get the west lot.  For those who want to make sure we leave parking for other users (or just want to be environmentally friendly) we could definitely do some carpooling from Golden.  Respond in the comments if you want to meet at Mountain Toad at 6:00 and carpool up to the west lot.", "The total loop is about 5.2 miles.  It will definitely be a little more mellow than the lower section of the park, but still has good rolling climbs and great views.  After the run we will head back to town and grab some beers at the Toad.  See you all on Tuesday!"],
       googleMapLink: "https://goo.gl/maps/fqmqohpp3LH2" 
@@ -148,8 +150,13 @@ export default Vue.extend({
       margin-top: 1rem;
       height: 45%;
       line-height: 1.1;
+      h2 {
+        font-size: 1.25rem;
+        text-align: center;
+        font-weight: 800;
+      }
       p {
-        margin-top: 1rem;
+        margin-top: 0.75rem;
       }
       &.pending {
               text-align: center;
