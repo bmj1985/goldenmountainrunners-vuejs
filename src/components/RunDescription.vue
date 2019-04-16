@@ -10,18 +10,11 @@
       <h2 class="date">{{date}} {{runTime}}</h2>
       <p>
         Where:
-        <a href="https://goo.gl/maps/fqmqohpp3LH2" target="_blank">{{location}}</a>
+        <a :href="googleMapLink" target="_blank">{{location}}</a>
       </p>
-      <div class="run-description" :class="{pending: pendingRunDetails }">
-        <!-- {{pendingRunDetails}} -->
-        <p>****Note Start Time 6:30*****</p>
-        <p>Apparently all of the mountain bikes in the State of Colorado wanted to meet in the lower parking lot of White Ranch this past Tuesday.  I very much appreciate everyone’s flexibility in making the last minute shift to North Table to avoid an overcrowding situation at WR.  This week, we will try White Ranch.  This time we will head to the west lot to try to avoid some of the crowds.  We will call this one the Rawhide Loop since the entire run will be on Rawhide trail.  Pretty creative right?!?!
-We will start the run at 6:30 to allow for a little extra drive time to get the west lot.  For those who want to make sure we leave parking for other users (or just want to be environmentally friendly) we could definitely do some carpooling from Golden.  Respond in the comments if you want to meet at Mountain Toad at 6:00 and carpool up to the west lot.  
-The total loop is about 5.2 miles.  It will definitely be a little more mellow than the lower section of the park, but still has good rolling climbs and great views.  After the run we will head back to town and grab some beers at the   <a
-            href="http://www.mountaintoadbrewing.com"
-            target="_blank"
-          >Toad</a>.  See you all on Tuesday!</p>
-        </p>
+      <div class="run-description">
+        <div v-if="!details" :class="{pending: pendingRunDetails }">{{pendingRunDetails}}</div>
+        <div v-else class="next-run"><p v-for="detail in details">{{detail}}</p></div>
         <p class="route">
           Route description:
           <a :href="link" target="_blank">{{link}}</a>
@@ -43,7 +36,9 @@ export default Vue.extend({
         "Stay tuned! Details on next Tuesday's run will generally be posted sometime between Thursday and Monday prior.",
       link: "https://www.gmap-pedometer.com/?r=7360374",
       runTime: "6:30pm",
-      location: "25303 Belcher Hill Rd, Golden, CO 80403"
+      location: "25303 Belcher Hill Rd, Golden, CO 80403",
+      details: ["****Note Start Time 6:30*****", "Apparently all of the mountain bikes in the State of Colorado wanted to meet in the lower parking lot of White Ranch this past Tuesday.  I very much appreciate everyone’s flexibility in making the last minute shift to North Table to avoid an overcrowding situation at WR.  This week, we will try White Ranch.  This time we will head to the west lot to try to avoid some of the crowds.  We will call this one the Rawhide Loop since the entire run will be on Rawhide trail.  Pretty creative right?!?!", "We will start the run at 6:30 to allow for a little extra drive time to get the west lot.  For those who want to make sure we leave parking for other users (or just want to be environmentally friendly) we could definitely do some carpooling from Golden.  Respond in the comments if you want to meet at Mountain Toad at 6:00 and carpool up to the west lot.", "The total loop is about 5.2 miles.  It will definitely be a little more mellow than the lower section of the park, but still has good rolling climbs and great views.  After the run we will head back to town and grab some beers at the Toad.  See you all on Tuesday!"],
+      googleMapLink: "https://goo.gl/maps/fqmqohpp3LH2" 
     };
   },
   computed: {
@@ -52,8 +47,14 @@ export default Vue.extend({
       const daysArr = eachDay(new Date(), oneWeekFromToday);
       const tuesday = daysArr.find(v => isTuesday(v));
       return tuesday ? format(tuesday, "dddd MMMM Do, YYYY") : null;
-    }
-  }
+    },
+    detailsTruncated: function() {
+      const length = this.details.join().length
+      if (length < 500) {
+        return this.details
+      } else return this.details.slice(0, 2)
+
+  }}
 });
 </script>
 
@@ -124,11 +125,18 @@ export default Vue.extend({
     .logo {
       height: 10rem;
       width: 10rem;
+
     }
     .run-description {
-      /* &.pending {
+      margin-top: 1rem;
+      overflow: scroll;
+      max-height: 33%;
+      p {
+        margin-top: 1rem;
+      }
+      &.pending {
               text-align: center;
-          } */
+          }
       text-align: justify;
       font-size: 1.25rem;
       box-shadow: 0;
@@ -148,9 +156,9 @@ export default Vue.extend({
         width: 7rem;
       }
       .run-description {
-        /* &.pending {
+        &.pending {
               text-align: center;
-          } */
+          }
         text-align: justify;
         font-size: 1.1rem;
         box-shadow: 0;
