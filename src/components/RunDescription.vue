@@ -147,6 +147,7 @@ export default Vue.extend({
     .run-description {
       margin-top: 1rem;
       height: 45%;
+      line-height: 1.1;
       p {
         margin-top: 1rem;
       }
