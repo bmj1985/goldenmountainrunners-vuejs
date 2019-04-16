@@ -47,14 +47,7 @@ export default Vue.extend({
       const daysArr = eachDay(new Date(), oneWeekFromToday);
       const tuesday = daysArr.find(v => isTuesday(v));
       return tuesday ? format(tuesday, "dddd MMMM Do, YYYY") : null;
-    },
-    detailsTruncated: function() {
-      const length = this.details.join().length
-      if (length < 500) {
-        return this.details
-      } else return this.details.slice(0, 2)
-
-  }}
+    }}
 });
 </script>
 
