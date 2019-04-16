@@ -4,17 +4,19 @@
       <img id="pic" alt="Golden Mountain runners action photo" src="../assets/northtable.png">
     </div>
     <div class="text-container">
+      <div class="major-details">
       <h3>Welcome to</h3>
       <img class="logo" alt="GMR logo" src="../assets/gmr_logo.png">
       <p class="next-run">Our next run will be:</p>
       <h2 class="date">{{date}} {{runTime}}</h2>
-      <p>
+      <p class="location">
         Where:
         <a :href="googleMapLink" target="_blank">{{location}}</a>
       </p>
+      </div>
       <div class="run-description">
         <div v-if="!details" :class="{pending: pendingRunDetails }">{{pendingRunDetails}}</div>
-        <div v-else class="next-run"><p v-for="detail in details">{{detail}}</p></div>
+        <div v-else class="run-details"><p v-for="detail in details">{{detail}}</p></div>
         <p class="route">
           Route description:
           <a :href="link" target="_blank">{{link}}</a>
@@ -109,21 +111,42 @@ export default Vue.extend({
       line-height: 1.2;
       text-align: center;
     }
-    h2 {
-      font-size: 2rem;
-    }
-    h3 {
-      font-size: 1.75rem;
-    }
-    .logo {
-      height: 10rem;
-      width: 10rem;
+    .major-details {
+      height: 55%;
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+      align-items: center;
+        h2 {
+          font-size: 2rem;
+              @media only screen and (max-width: 450px) {
+              font-size: 1rem;
+              }
+        }
+        h3 {
+          font-size: 1.75rem;
+        }
+        .logo {
+          height: 10rem;
+          width: 10rem;
+          @media only screen and (max-width: 450px) {
+               height: 7rem;
+          width: 7rem;
+              }
+        }
+        .next-run {
 
+        }
+        .date {
+
+        }
+        .location {
+
+        }
     }
     .run-description {
       margin-top: 1rem;
-      overflow: scroll;
-      max-height: 33%;
+      height: 45%;
       p {
         margin-top: 1rem;
       }
