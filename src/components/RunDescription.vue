@@ -5,22 +5,34 @@
     </div>
     <div class="text-container">
       <div class="major-details">
-      <h3>Welcome to</h3>
-      <img class="logo" alt="GMR logo" src="../assets/gmr_logo.png">
-      <p class="next-run">Our next run will be:</p>
-      <h2 class="date">{{date}} {{runTime}}</h2>
-      <p class="location">
-        Where:
-        <a :href="googleMapLink" target="_blank">{{location}}</a>
-      </p>
+        <h3>Welcome to</h3>
+        <img class="logo" alt="GMR logo" src="../assets/gmr_logo.png">
+        <p class="next-run">Our next run will be:</p>
+        <h2 class="date">
+          {{date}}
+          <!-- {{runTime}} -->
+        </h2>
+        <!-- <p class="location">
+          Where:
+          <a :href="googleMapLink" target="_blank">{{location}}</a>
+        </p>-->
       </div>
       <div class="run-description">
-        <h2 class="title">{{title}}</h2>
+        <p>
+          See the
+          <a
+            href="https://www.facebook.com/groups/lookoutmountainrunners"
+            target="_blank"
+          >Facebook</a> group page for details. Full website coming soon!
+          <!-- <h2 class="title">{{title}}</h2>
         <div v-if="!details" :class="{pending: pendingRunDetails }">{{pendingRunDetails}}</div>
-        <div v-else class="run-details"><p v-for="detail in details">{{detail}}</p></div>
+        <div v-else class="run-details">
+          <p v-for="detail in details">{{detail}}</p>
+        </div>
         <p class="route">
           Route description:
           <a :href="link" target="_blank">{{link}}</a>
+          </p>-->
         </p>
       </div>
     </div>
@@ -41,8 +53,13 @@ export default Vue.extend({
       runTime: "6:30pm",
       title: "White Ranch Take 2 (Rawhide Loop Edition)",
       location: "25303 Belcher Hill Rd, Golden, CO 80403",
-      details: ["****Note Start Time 6:30*****", "Apparently all of the mountain bikes in the State of Colorado wanted to meet in the lower parking lot of White Ranch this past Tuesday.  I very much appreciate everyone’s flexibility in making the last minute shift to North Table to avoid an overcrowding situation at WR.  This week, we will try White Ranch.  This time we will head to the west lot to try to avoid some of the crowds.  We will call this one the Rawhide Loop since the entire run will be on Rawhide trail.  Pretty creative right?!?!", "We will start the run at 6:30 to allow for a little extra drive time to get the west lot.  For those who want to make sure we leave parking for other users (or just want to be environmentally friendly) we could definitely do some carpooling from Golden.  Respond in the comments if you want to meet at Mountain Toad at 6:00 and carpool up to the west lot.", "The total loop is about 5.2 miles.  It will definitely be a little more mellow than the lower section of the park, but still has good rolling climbs and great views.  After the run we will head back to town and grab some beers at the Toad.  See you all on Tuesday!"],
-      googleMapLink: "https://goo.gl/maps/fqmqohpp3LH2" 
+      details: [
+        "****Note Start Time 6:30*****",
+        "Apparently all of the mountain bikes in the State of Colorado wanted to meet in the lower parking lot of White Ranch this past Tuesday.  I very much appreciate everyone’s flexibility in making the last minute shift to North Table to avoid an overcrowding situation at WR.  This week, we will try White Ranch.  This time we will head to the west lot to try to avoid some of the crowds.  We will call this one the Rawhide Loop since the entire run will be on Rawhide trail.  Pretty creative right?!?!",
+        "We will start the run at 6:30 to allow for a little extra drive time to get the west lot.  For those who want to make sure we leave parking for other users (or just want to be environmentally friendly) we could definitely do some carpooling from Golden.  Respond in the comments if you want to meet at Mountain Toad at 6:00 and carpool up to the west lot.",
+        "The total loop is about 5.2 miles.  It will definitely be a little more mellow than the lower section of the park, but still has good rolling climbs and great views.  After the run we will head back to town and grab some beers at the Toad.  See you all on Tuesday!"
+      ],
+      googleMapLink: "https://goo.gl/maps/fqmqohpp3LH2"
     };
   },
   computed: {
@@ -51,7 +68,8 @@ export default Vue.extend({
       const daysArr = eachDay(new Date(), oneWeekFromToday);
       const tuesday = daysArr.find(v => isTuesday(v));
       return tuesday ? format(tuesday, "dddd MMMM Do, YYYY") : null;
-    }}
+    }
+  }
 });
 </script>
 
@@ -119,32 +137,29 @@ export default Vue.extend({
       justify-content: space-evenly;
       flex-direction: column;
       align-items: center;
-        h2 {
-          font-size: 2rem;
-              @media only screen and (max-width: 450px) {
-              font-size: 1rem;
-              }
+      h2 {
+        font-size: 2rem;
+        @media only screen and (max-width: 450px) {
+          font-size: 1rem;
         }
-        h3 {
-          font-size: 1.75rem;
-        }
-        .logo {
-          height: 10rem;
-          width: 10rem;
-          @media only screen and (max-width: 450px) {
-               height: 7rem;
+      }
+      h3 {
+        font-size: 1.75rem;
+      }
+      .logo {
+        height: 10rem;
+        width: 10rem;
+        @media only screen and (max-width: 450px) {
+          height: 7rem;
           width: 7rem;
-              }
         }
-        .next-run {
-
-        }
-        .date {
-
-        }
-        .location {
-
-        }
+      }
+      .next-run {
+      }
+      .date {
+      }
+      .location {
+      }
     }
     .run-description {
       margin-top: 1rem;
@@ -159,8 +174,8 @@ export default Vue.extend({
         margin-top: 0.75rem;
       }
       &.pending {
-              text-align: center;
-          }
+        text-align: center;
+      }
       text-align: justify;
       font-size: 1.25rem;
       box-shadow: 0;
@@ -181,8 +196,8 @@ export default Vue.extend({
       }
       .run-description {
         &.pending {
-              text-align: center;
-          }
+          text-align: center;
+        }
         text-align: justify;
         font-size: 1.1rem;
         box-shadow: 0;
