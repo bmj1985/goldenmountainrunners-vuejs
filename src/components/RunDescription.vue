@@ -8,31 +8,21 @@
         <h3>Welcome to</h3>
         <img class="logo" alt="GMR logo" src="../assets/gmr_logo.png">
         <p class="next-run">Our next run will be:</p>
-        <h2 class="date">
-          {{date}}
-          <!-- {{runTime}} -->
-        </h2>
-        <!-- <p class="location">
+        <h2 class="date">{{nextEvent ? nextEventDate : nextTuesdayPretty}} {{time}}</h2>
+        <p class="location" v-if="nextEvent">
           Where:
-          <a :href="googleMapLink" target="_blank">{{location}}</a>
-        </p>-->
+          <a :href="googleMapsLink ? googleMapsLink : null" target="_blank">{{location}}</a>
+        </p>
       </div>
       <div class="run-description">
-        <p>
-          See the
-          <a
-            href="https://www.facebook.com/groups/lookoutmountainrunners"
-            target="_blank"
-          >Facebook</a> group page for details. Full website coming soon!
-          <!-- <h2 class="title">{{title}}</h2>
+        <h2 class="title">{{nextEvent ? nextEvent.title : title}}</h2>
         <div v-if="!details" :class="{pending: pendingRunDetails }">{{pendingRunDetails}}</div>
         <div v-else class="run-details">
-          <p v-for="detail in details">{{detail}}</p>
+          <p v-for="detail in details" :key="detail.dateTime">{{detail}}</p>
         </div>
-        <p class="route">
+        <p class="route" v-if="nextEvent">
           Route description:
-          <a :href="link" target="_blank">{{link}}</a>
-          </p>-->
+          <a :href="runRouteLink" target="_blank">{{runRouteLink}}</a>
         </p>
       </div>
     </div>
@@ -41,33 +31,86 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { isTuesday, eachDay, addDays, format } from "date-fns";
+import {
+  isTuesday,
+  eachDay,
+  addDays,
+  format,
+  isAfter,
+  isBefore,
+  parse
+} from "date-fns";
+
+interface GMREvent {
+  dateTime: string;
+  details: Array<string>;
+  googleMapsLink: string;
+  location: string;
+  runRouteLink: string;
+  time: string;
+  title: string;
+}
 
 export default Vue.extend({
   name: "RunDescription",
   data() {
     return {
       pendingRunDetails:
-        "Stay tuned! Details on next Tuesday's run will generally be posted sometime between Thursday and Monday prior.",
-      link: "https://www.gmap-pedometer.com/?r=7360374",
-      runTime: "6:30pm",
-      title: "White Ranch Take 2 (Rawhide Loop Edition)",
-      location: "25303 Belcher Hill Rd, Golden, CO 80403",
-      details: [
-        "****Note Start Time 6:30*****",
-        "Apparently all of the mountain bikes in the State of Colorado wanted to meet in the lower parking lot of White Ranch this past Tuesday.  I very much appreciate everyone’s flexibility in making the last minute shift to North Table to avoid an overcrowding situation at WR.  This week, we will try White Ranch.  This time we will head to the west lot to try to avoid some of the crowds.  We will call this one the Rawhide Loop since the entire run will be on Rawhide trail.  Pretty creative right?!?!",
-        "We will start the run at 6:30 to allow for a little extra drive time to get the west lot.  For those who want to make sure we leave parking for other users (or just want to be environmentally friendly) we could definitely do some carpooling from Golden.  Respond in the comments if you want to meet at Mountain Toad at 6:00 and carpool up to the west lot.",
-        "The total loop is about 5.2 miles.  It will definitely be a little more mellow than the lower section of the park, but still has good rolling climbs and great views.  After the run we will head back to town and grab some beers at the Toad.  See you all on Tuesday!"
-      ],
-      googleMapLink: "https://goo.gl/maps/fqmqohpp3LH2"
+        "Stay tuned! Details on next Tuesday's run will generally be posted sometime between Thursday and Monday prior."
     };
   },
   computed: {
-    date: function() {
-      const oneWeekFromToday = addDays(new Date(), 7);
-      const daysArr = eachDay(new Date(), oneWeekFromToday);
-      const tuesday = daysArr.find(v => isTuesday(v));
-      return tuesday ? format(tuesday, "dddd MMMM Do, YYYY") : null;
+    nextTuesday(): Date {
+      const oneWeekFromToday: Date = addDays(new Date(), 7);
+      const daysArr: Array<Date> = eachDay(new Date(), oneWeekFromToday);
+      // @ts-ignore
+      const tuesday!: Date = daysArr.find(v => isTuesday(v));
+      return parse(tuesday);
+    },
+    nextTuesdayPretty(): string {
+      return format(this.nextTuesday, "dddd MMMM Do, YYYY");
+    },
+    events(): Array<GMREvent> {
+      return this.$store.state.events;
+    },
+    nextEvent(): GMREvent | null {
+      return (
+        this.events &&
+        this.events.filter((event: GMREvent) => {
+          return (
+            this.nextTuesday &&
+            isAfter(new Date(event.dateTime), new Date()) &&
+            isBefore(
+              new Date(event.dateTime),
+              addDays(new Date(this.nextTuesday), 1)
+            )
+          );
+        })[0]
+      );
+    },
+    nextEventDate() {
+      return (
+        this.nextEvent &&
+        format(new Date(this.nextEvent.dateTime), "dddd MMMM Do, YYYY")
+      );
+    },
+    details() {
+      return this.nextEvent && this.nextEvent.details;
+    },
+    title() {
+      return this.nextEvent && this.nextEvent.title;
+    },
+    googleMapsLink() {
+      return this.nextEvent && this.nextEvent.googleMapsLink;
+    },
+    location() {
+      return this.nextEvent && this.nextEvent.location;
+    },
+    runRouteLink() {
+      return this.nextEvent && this.nextEvent.runRouteLink;
+    },
+    time() {
+      return this.nextEvent && this.nextEvent.time;
     }
   }
 });
@@ -154,12 +197,12 @@ export default Vue.extend({
           width: 7rem;
         }
       }
-      .next-run {
+      /* .next-run {
       }
       .date {
       }
       .location {
-      }
+      } */
     }
     .run-description {
       margin-top: 1rem;

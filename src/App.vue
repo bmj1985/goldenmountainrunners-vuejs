@@ -4,32 +4,35 @@
       <!-- <div id="nav">
         <router-link to="/">Home</router-link>|
         <router-link to="/about">About</router-link>
-      </div> -->
+      </div>-->
     </header>
     <main>
       <router-view/>
     </main>
-      <footer>
-        <!-- <SlackInvite/> -->
-        <div class="social-icons">
-      <a href="https://www.facebook.com/groups/lookoutmountainrunners" target="_blank">
-        <i class="fab fa-facebook-square fa-2x"></i>
-      </a>
-      <a href="https://www.instagram.com/goldenmountainrunners" target="_blank">
-        <i class="fab fa-instagram fa-2x"></i>
-      </a>
+    <footer>
+      <!-- <SlackInvite/> -->
+      <div class="social-icons">
+        <a href="https://www.facebook.com/groups/lookoutmountainrunners" target="_blank">
+          <i class="fab fa-facebook-square fa-2x"></i>
+        </a>
+        <a href="https://www.instagram.com/goldenmountainrunners" target="_blank">
+          <i class="fab fa-instagram fa-2x"></i>
+        </a>
       </div>
     </footer>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import SlackInvite from "./components/SlackInvite"
+import Vue from "vue";
+import SlackInvite from "./components/SlackInvite";
 
 export default Vue.extend({
   name: "app",
-  components: { SlackInvite }
+  components: { SlackInvite },
+  created() {
+    this.$store.dispatch("listEvents");
+  }
 });
 </script>
 
@@ -84,14 +87,14 @@ export default Vue.extend({
     }
     .social-icons {
       display: flex;
-       a {
-      text-decoration: none;
-      i {
-        margin: 1rem;
-        color: $gmr-grey;
+      a {
+        text-decoration: none;
+        i {
+          margin: 1rem;
+          color: $gmr-grey;
+        }
       }
-    }}
-
+    }
   }
 }
 </style>
