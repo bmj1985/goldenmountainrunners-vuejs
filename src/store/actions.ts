@@ -17,7 +17,6 @@ const actions: ActionTree<State, State> = {
         fetch(`${BASE_URL}/events/`)
             .then(response => response.json())
             .then(events => {
-                console.log(Object.values(events.events))
                 commit("listEvents", Object.values(events.events))
             })
     }
