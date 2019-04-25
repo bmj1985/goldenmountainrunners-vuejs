@@ -18,7 +18,7 @@
         <h2 class="title">{{nextEvent ? nextEvent.title : title}}</h2>
         <div v-if="!details" :class="{pending: pendingRunDetails }">{{pendingRunDetails}}</div>
         <div v-else class="run-details">
-          <p v-for="detail in details" :key="detail.dateTime">{{detail}}</p>
+          <p v-for="(detail, i) in details" :key="i">{{detail}}</p>
         </div>
         <p class="route" v-if="nextEvent">
           Route description:
@@ -71,7 +71,6 @@ export default Vue.extend({
             return format(this.nextTuesday, "dddd MMMM Do, YYYY")
         },
         events(): Array<GMREvent> {
-            console.log(this.$store.state.events)
             return this.$store.state.events
         },
         nextEvent: function(): GMREvent | undefined {
