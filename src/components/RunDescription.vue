@@ -75,10 +75,9 @@ export default Vue.extend({
             return this.$store.state.events
         },
         nextEvent: function(): GMREvent | undefined {
-            console.log(this.events.find(event => this.getNextEvent(event)))
             return (
                 this.events &&
-                this.events.find(event => this.getNextEvent(event))
+                this.events.find(event => this.isNextEvent(event))
             )
         },
         nextEventDate() {
