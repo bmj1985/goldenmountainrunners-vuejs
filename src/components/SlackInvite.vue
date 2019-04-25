@@ -92,8 +92,11 @@
 
     <transition name="notification-pop-fast">
       <div class="invite-notice" v-show="invited">
-        <p>You've already sent an invite request for that email. Please wait 24 hours and try again or
-          <a href="mailto:info@denverdevs.org">contact help</a>.
+        <p>
+          You've already sent an invite request for that email. Please wait 24 hours and try again or
+          <a
+            href="mailto:info@denverdevs.org"
+          >contact help</a>.
         </p>
       </div>
     </transition>
@@ -101,297 +104,296 @@
 </template>
 
 <script>
-
 export default {
-  name: "SlackInvite",
+    name: "SlackInvite",
 
-  data() {
-    return {
-      email: "",
-      message: "",
-      status: "",
-      invited: "",
-      invitedEmail: "",
-      hasResponse: "",
-      heads_up: "",
-      submitted: "",
-      buttonText: "Join our Slack community."
-    };
-  },
-
-  filters: {
-    trunc(text, length, suffix) {
-      return text.length < 14 ? text : `${text.substring(0, length)}${suffix}`;
-    }
-  },
-  mounted() {
-    lscache.flushExpired();
-
-    if (lscache.get("hasRequestedInvite")) {
-      this.invited = true;
-      this.invitedEmail = lscache.get("hasRequestedInvite");
-    }
-  },
-
-  methods: {
-    handleInvite() {
-    //   if (!this.validEmail(this.email)) {
-    //     this.setInvalidEmailStatus();
-    //     return;
-    //   }
-
-    //   if (this.email === lscache.get("hasRequestedInvite")) {
-    //     this.invited = true;
-    //   } else {
-    //     (this.submitted = true), (this.buttonText = "Sending...");
-    //     lscache.set("hasRequestedInvite", this.email, 120);
-
-    //     setTimeout(() => {
-    //       axios
-    //         .post(
-    //           `https://kapgbb2ttf.execute-api.us-east-1.amazonaws.com/dev/invite`,
-    //           {
-    //             email: this.email
-    //           }
-    //         )
-    //         .then(response => {
-    //           this.status = response.data.status;
-    //           this.status = "invite-success";
-    //           setTimeout(() => {
-    //             this.hasResponse = false;
-    //           }, 4000);
-    //         })
-    //         .catch(error => {
-    //           console.error(error);
-    //           this.message =
-    //             "Uh oh, somethings wrong here (and it's on us) - reach out to help@denverdevs.org.";
-    //         });
-    //     }, 1000);
-    //   }
+    data() {
+        return {
+            email: "",
+            message: "",
+            status: "",
+            invited: "",
+            invitedEmail: "",
+            hasResponse: "",
+            heads_up: "",
+            submitted: "",
+            buttonText: "Join our Slack community."
+        }
     },
-    validEmail(email) {
-      if (!email) return false;
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(email);
+
+    filters: {
+        trunc(text, length, suffix) {
+            return text.length < 14
+                ? text
+                : `${text.substring(0, length)}${suffix}`
+        }
     },
-    setInvalidEmailStatus() {
-      this.hasResponse = true;
-      this.message = "Please enter a valid email.";
-      this.status = "";
-      setTimeout(() => {
-        this.hasResponse = false;
-      }, 4000);
+    mounted() {
+        lscache.flushExpired()
+
+        if (lscache.get("hasRequestedInvite")) {
+            this.invited = true
+            this.invitedEmail = lscache.get("hasRequestedInvite")
+        }
+    },
+
+    methods: {
+        handleInvite() {
+            //   if (!this.validEmail(this.email)) {
+            //     this.setInvalidEmailStatus();
+            //     return;
+            //   }
+            //   if (this.email === lscache.get("hasRequestedInvite")) {
+            //     this.invited = true;
+            //   } else {
+            //     (this.submitted = true), (this.buttonText = "Sending...");
+            //     lscache.set("hasRequestedInvite", this.email, 120);
+            //     setTimeout(() => {
+            //       axios
+            //         .post(
+            //           `https://kapgbb2ttf.execute-api.us-east-1.amazonaws.com/dev/invite`,
+            //           {
+            //             email: this.email
+            //           }
+            //         )
+            //         .then(response => {
+            //           this.status = response.data.status;
+            //           this.status = "invite-success";
+            //           setTimeout(() => {
+            //             this.hasResponse = false;
+            //           }, 4000);
+            //         })
+            //         .catch(error => {
+            //           console.error(error);
+            //           this.message =
+            //             "Uh oh, somethings wrong here (and it's on us) - reach out to help@denverdevs.org.";
+            //         });
+            //     }, 1000);
+            //   }
+        },
+        validEmail(email) {
+            if (!email) return false
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return re.test(email)
+        },
+        setInvalidEmailStatus() {
+            this.hasResponse = true
+            this.message = "Please enter a valid email."
+            this.status = ""
+            setTimeout(() => {
+                this.hasResponse = false
+            }, 4000)
+        }
     }
-  }
-};
+}
 </script>
 
 <style scoped lang="scss">
 @import "../styles/_global.scss";
 
 .slack-invite {
-  max-width: 350px;
-  position: relative;
+    max-width: 350px;
+    position: relative;
 
-  @media screen and (min-width: 768px) {
-    margin-top: 24px;
-  }
+    @media screen and (min-width: 768px) {
+        margin-top: 24px;
+    }
 
-  @media screen and (min-width: 1440px) {
-    max-width: 440px;
-  }
+    @media screen and (min-width: 1440px) {
+        max-width: 440px;
+    }
 }
 
 form {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    position: relative;
 
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-  }
+    @media screen and (min-width: 768px) {
+        flex-direction: row;
+    }
 }
 
 label span {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
 }
 
 input {
-  width: 100%;
-  box-sizing: border-box;
-  display: block;
-  font-size: 1rem;
-  border: none;
-  padding: 1rem;
-  border-radius: 0px;
-  box-shadow: none;
-  font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    font-size: 1rem;
+    border: none;
+    padding: 1rem;
+    border-radius: 0px;
+    box-shadow: none;
+    font-size: 16px;
 }
 
 button {
-  background: gold;
-  font-family: OpenSans;
-  font-weight: 700;
-  text-align: center;
-  border: 0px;
-  padding: 1rem;
-  color: black;
+    background: gold;
+    font-family: OpenSans;
+    font-weight: 700;
+    text-align: center;
+    border: 0px;
+    padding: 1rem;
+    color: black;
 
-  @media screen and (min-width: 1024px) {
-    display: inline-block;
-    min-width: 114px;
-  }
+    @media screen and (min-width: 1024px) {
+        display: inline-block;
+        min-width: 114px;
+    }
 
-  &:hover {
-    cursor: pointer;
-  }
+    &:hover {
+        cursor: pointer;
+    }
 
-  & .submitted {
-  }
+    & .submitted {
+    }
 }
 
 .message {
-  background: fuchsia;
-  color: white;
-  padding: 1em;
-  transform: scale(1);
-  margin-top: 0.4em;
-  border-left: 3px solid lighten(maroon, 5%);
-  opacity: 1;
-
-  @media screen and(min-width: 768px) {
-    position: absolute;
-    z-index: 4;
-    top: 100%;
-  }
-
-  &.invite-success {
-    background: blue;
+    background: fuchsia;
     color: white;
-    border-left: 3px solid lighten(blue, 5%);
-  }
+    padding: 1em;
+    transform: scale(1);
+    margin-top: 0.4em;
+    border-left: 3px solid lighten(maroon, 5%);
+    opacity: 1;
+
+    @media screen and(min-width: 768px) {
+        position: absolute;
+        z-index: 4;
+        top: 100%;
+    }
+
+    &.invite-success {
+        background: blue;
+        color: white;
+        border-left: 3px solid lighten(blue, 5%);
+    }
 }
 .notification-pop-enter-active {
-  transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 .notification-pop-leave-active {
-  transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 .notification-pop-enter,
 .notification-pop-leave-to {
-  transform: scale(0.9);
-  opacity: 0;
+    transform: scale(0.9);
+    opacity: 0;
 }
 
 .notification-pop-fast-enter-active {
-  transition: all 0.144s ease;
+    transition: all 0.144s ease;
 }
 .notification-pop-fast-leave-active {
-  transition: all 0.144s ease;
+    transition: all 0.144s ease;
 }
 .notification-pop-fast-enter,
 .notification-pop-fast-leave-to {
-  transform: scale(0.9);
-  opacity: 0;
+    transform: scale(0.9);
+    opacity: 0;
 }
 
 .invite-notice {
-  background: white;
-  color: #2c3e50;
-  box-sizing: border-box;
-  padding: 1em;
-  border-radius: 5px;
-  margin-top: 10px;
-  // position: absolute;
-  font-size: 14px;
-  width: 100%;
-
-  @media screen and (min-width: 768px) {
-    position: absolute;
-    max-width: 420px;
-    margin-left: 40px;
-    margin-top: 0;
-    left: 100%;
-    top: -135%;
-  }
-
-  &:before {
-    position: absolute;
-    content: "";
-    top: 110px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid white;
+    background: white;
+    color: #2c3e50;
+    box-sizing: border-box;
+    padding: 1em;
+    border-radius: 5px;
+    margin-top: 10px;
+    // position: absolute;
+    font-size: 14px;
+    width: 100%;
 
     @media screen and (min-width: 768px) {
-      left: -25px;
-      top: 0;
-      bottom: 0;
-      transform: translateY(240%);
-      margin: 0;
-      border-top: 16px solid transparent;
-      border-bottom: 16px solid transparent;
-      border-right: 16px solid white;
+        position: absolute;
+        max-width: 420px;
+        margin-left: 40px;
+        margin-top: 0;
+        left: 100%;
+        top: -135%;
     }
-  }
 
-  h3 {
-    margin: 0;
-  }
+    &:before {
+        position: absolute;
+        content: "";
+        top: 110px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid white;
+
+        @media screen and (min-width: 768px) {
+            left: -25px;
+            top: 0;
+            bottom: 0;
+            transform: translateY(240%);
+            margin: 0;
+            border-top: 16px solid transparent;
+            border-bottom: 16px solid transparent;
+            border-right: 16px solid white;
+        }
+    }
+
+    h3 {
+        margin: 0;
+    }
 }
 
 .success-message {
-  position: absolute;
-  background: #00c16c;
-  color: #282c34;
-  font-weight: 100;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-
-  div {
-    flex-basis: 80%;
-
-    span {
-      font-weight: bold;
-      display: block;
-    }
-  }
-
-  .check {
-    margin-right: 16px;
-    path {
-      fill: #282c34;
-    }
-  }
-
-  .close {
     position: absolute;
-    top: 0;
-    right: 5px;
-    width: 12px;
-    opacity: 0.3;
-    cursor: pointer;
+    background: #00c16c;
+    color: #282c34;
+    font-weight: 100;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
 
-    &:hover {
-      opacity: 0.6;
+    div {
+        flex-basis: 80%;
+
+        span {
+            font-weight: bold;
+            display: block;
+        }
     }
-  }
+
+    .check {
+        margin-right: 16px;
+        path {
+            fill: #282c34;
+        }
+    }
+
+    .close {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        width: 12px;
+        opacity: 0.3;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
 }
 </style>

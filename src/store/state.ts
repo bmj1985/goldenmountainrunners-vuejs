@@ -1,7 +1,7 @@
 export default class State {
-  public events: Array<any>
+    public events: Array<any>
 
-  constructor() {
-    this.events = []
-  }
+    constructor() {
+        this.events = []
+    }
 }

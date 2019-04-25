@@ -12,9 +12,9 @@ const debug: boolean = process.env.NODE_ENV !== "production"
 Vue.use(Vuex)
 
 export default new Store<State>({
-  state: new State(),
-  mutations,
-  actions,
-  getters,
-  strict: debug
+    state: new State(),
+    mutations,
+    actions,
+    getters,
+    strict: debug
 })
