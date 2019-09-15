@@ -12,7 +12,7 @@
       <footer>
         <!-- <SlackInvite/> -->
         <div class="social-icons">
-      <a href="https://www.facebook.com/groups/lookoutmountainrunners" target="_blank">
+      <a href="https://www.facebook.com/groups/goldenmountainrunners" target="_blank">
         <i class="fab fa-facebook-square fa-2x"></i>
       </a>
       <a href="https://www.instagram.com/goldenmountainrunners" target="_blank">

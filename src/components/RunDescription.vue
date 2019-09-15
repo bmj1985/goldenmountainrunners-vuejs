@@ -21,7 +21,7 @@
         <p>
           See the
           <a
-            href="https://www.facebook.com/groups/lookoutmountainrunners"
+            href="https://www.facebook.com/groups/goldenmountainrunners"
             target="_blank"
           >Facebook</a> group page for details. Full website coming soon!
           <!-- <h2 class="title">{{title}}</h2>
